@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // 先に季節データを作成
+        $this->call(SeasonSeeder::class);
+
+        // 商品データと季節の紐付けを作成
+        $this->call(ProductSeeder::class);
     }
 }
