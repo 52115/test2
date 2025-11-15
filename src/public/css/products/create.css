@@ -1,0 +1,69 @@
+.register-container {
+    width: 700px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.register-form .form-group {
+    margin-bottom: 20px;
+}
+
+.register-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.register-form input[type="text"],
+.register-form input[type="number"],
+.register-form input[type="file"],
+.register-form textarea,
+.register-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+}
+
+.register-form select {
+    height: 120px;
+}
+
+.error {
+    color: #d33;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-back,
+.btn-register {
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+}
+
+.btn-back {
+    background: #666;
+}
+
+.btn-register {
+    background: #1c7ed6;
+    border: none;
+}

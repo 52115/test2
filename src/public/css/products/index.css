@@ -1,3 +1,22 @@
+/* ヘッダー */
+.index-header {
+    padding: 20px;
+}
+
+.index-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-add {
+    color: white;
+    text-decoration: none;
+    background-color: hsl(25, 93%, 63%);
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
 .product-page {
     display: flex;
     gap: 20px;
@@ -5,59 +24,80 @@
     flex-wrap: wrap;
 }
 
-/* サイドバー */
+/* サイドバー全体 */
 .sidebar {
     width: 220px;
     flex-shrink: 0;
+    box-sizing: border-box;
+    padding: 10px;
 }
 
+/* サイドバー内の全要素に box-sizing 適用 */
+.sidebar * {
+    box-sizing: border-box;
+}
+
+/* サイドバー見出し */
 .sidebar h2 {
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* 少し余裕を増やす */
 }
 
+/* 検索入力 */
 .search-input {
     width: 100%;
-    padding: 6px 8px;
-    margin-bottom: 10px;
+    padding: 10px 8px;    /* 縦方向を広めに */
+    margin-bottom: 5px;
     border: 1px solid #cbd5e0;
     border-radius: 4px;
+    min-height: 30px;
 }
 
+/* ボタン */
 .search-btn, .reset-btn {
-    display: inline-block;
-    margin-top: 5px;
-    padding: 6px 12px;
+    width: 100%;
+    display: block;
+    padding: 10px 12px;   /* 縦方向を広めに */
+    margin-top: 15px;     /* 上下の余白も広め */
     border-radius: 4px;
     border: none;
     cursor: pointer;
     text-decoration: none;
+    font-size: 14px;      /* 統一感のある文字サイズ */
+    min-height: 30px;
 }
 
+/* ボタン色設定 */
 .search-btn {
-    background-color: #3182ce;
-    color: white;
+    background-color: #f4ef87;
+    color: black;
 }
 
 .reset-btn {
-    background-color: #e53e3e;
+    background-color: #f6a8a8;
     color: white;
 }
 
+/* フィルタボックス */
 .filter-box {
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 .filter-box select {
     width: 100%;
-    padding: 6px 8px;
+    padding: 10px 8px;    /* 縦方向を広めに */
     border-radius: 4px;
     border: 1px solid #cbd5e0;
+    display: block;
+    font-size: 14px;
+    min-height: 70px;
+    margin-top: 15px;
 }
+
 
 /* 商品リスト */
 .product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
     gap: 20px;
     flex: 1;
 }
@@ -106,7 +146,16 @@
     text-decoration: none;
     color: #2d3748;
 }
+.pagination-area ul {
+    list-style: none; /* リストマーカーを消す */
+    padding: 0;       /* ul の余白リセット */
+    margin: 0;
+}
 
+.pagination-area li {
+    display: inline-block; /* 横並び */
+    margin: 0 4px;         /* ボタン間隔 */
+}
 .pagination .active span {
     background-color: #3182ce;
     color: white;

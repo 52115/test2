@@ -1,0 +1,84 @@
+.detail-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.detail-card {
+    display: flex;
+    gap: 40px;
+    background: #fff;
+    padding: 30px;
+}
+
+.detail-image-area img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+}
+
+.detail-info-area {
+    flex: 1;
+}
+
+.detail-name {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.detail-price {
+    font-size: 26px;
+    color: #e2782a;
+    margin-bottom: 20px;
+}
+
+.detail-seasons {
+    margin-bottom: 15px;
+}
+
+.season-tag {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-right: 8px;
+}
+
+.detail-description {
+    font-size: 18px;
+    margin-top: 15px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.detail-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-back,
+.btn-edit,
+.btn-delete {
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-back {
+    background: #888;
+}
+
+.btn-edit {
+    background: #2c7be5;
+}
+
+.btn-delete {
+    background: #e55353;
+    border: none;
+    cursor: pointer;
+}

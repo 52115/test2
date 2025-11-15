@@ -1,7 +1,17 @@
 @extends('layouts.app')
-
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/products/index.css') }}">
+@endsection
 @section('content')
-<div class="product-page">
+    <header class="index-header">
+        <div class="index-header-container">
+            <div></div>
+            <nav>
+                <a href="{{ route('products.create') }}" class="btn-add">+商品を追加</a>
+            </nav>
+        </div>
+    </header>
+    <div class="product-page">
     <div class="sidebar">
         <h2>商品一覧</h2>
         <form method="GET" action="{{ route('products.index') }}">
@@ -38,7 +48,7 @@
     </div>
 
     <div class="pagination-area">
-        {{ $products->withQueryString()->links() }}
+        {{ $products->withQueryString()->links('vendor.pagination.custom') }}
     </div>
 </div>
 @endsection

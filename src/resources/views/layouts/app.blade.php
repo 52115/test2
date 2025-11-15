@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', '商品一覧')</title>
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    @yield('css')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header class="header">
         <div class="header-container">
-            <h1>商品管理アプリ</h1>
-            <nav>
-                <a href="{{ route('products.create') }}" class="btn-add">+商品を追加</a>
-            </nav>
+            <h1>mogitate</h1>
         </div>
     </header>
 
@@ -26,8 +23,8 @@
 <style>
 /* ヘッダー */
 .header {
-    background-color: #2d3748;
-    color: white;
+    background-color: #fdf7f3;
+    color: orange;
     padding: 20px;
 }
 
@@ -39,17 +36,18 @@
 
 .header h1 {
     margin: 0;
-}
-
-.btn-add {
-    color: white;
-    text-decoration: none;
-    background-color: #48bb78;
-    padding: 8px 15px;
-    border-radius: 5px;
+    font-style: italic;
+    font-size: 18pt;
 }
 
 .main-content {
     padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* 見出しにはMontserratを使用 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
 }
 </style>

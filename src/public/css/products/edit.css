@@ -1,0 +1,105 @@
+/* ===============================
+   商品編集（PG03）専用スタイル
+   =============================== */
+
+/* 全体レイアウト */
+.container {
+    max-width: 800px;
+}
+
+/* タイトル */
+.container h1 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* カードデザイン */
+.card {
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    background-color: #fff;
+}
+
+/* ラベル */
+.form-label {
+    font-weight: 600;
+    color: #444;
+}
+
+/* 入力系（共通） */
+.form-control {
+    border-radius: 8px;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    transition: 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
+/* チェックボックス */
+.form-check-input {
+    transform: scale(1.2);
+    margin-right: 4px;
+}
+
+.form-check-label {
+    margin-left: 2px;
+    font-size: 14px;
+}
+
+/* 季節チェックボックスの全体 */
+.d-flex.flex-wrap .form-check {
+    margin-bottom: 8px;
+}
+
+/* エラー表示 */
+.invalid-feedback {
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* 現在の画像プレビュー */
+.img-thumbnail {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    max-height: 170px;
+}
+
+/* ボタン周り */
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 10px 20px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* gap が効かない古いブラウザ対応（念のため） */
+.d-flex.gap-3 > * {
+    margin-right: 12px;
+}
+
+.d-flex.gap-3 > *:last-child {
+    margin-right: 0;
+}
