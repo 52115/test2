@@ -35,8 +35,8 @@
 
     <div class="product-list">
         @forelse ($products as $product)
-            <div class="product-card" onclick="location.href='{{ route('products.show', $product->id) }}'">
-                <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" />
+            <div class="product-card" onclick="location.href='{{ route('products.edit', $product->id) }}'">
+                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" />
                 <div class="info">
                     <p class="name">{{ $product->name }}</p>
                     <p class="price">¥{{ number_format($product->price) }}</p>

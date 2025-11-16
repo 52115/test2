@@ -1,105 +1,181 @@
-/* ===============================
-   商品編集（PG03）専用スタイル
-   =============================== */
-
-/* 全体レイアウト */
-.container {
-    max-width: 800px;
+.detail-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
 }
 
-/* タイトル */
-.container h1 {
-    font-size: 26px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* カードデザイン */
-.card {
-    border-radius: 12px;
-    border: 1px solid #e5e5e5;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-    background-color: #fff;
-}
-
-/* ラベル */
-.form-label {
-    font-weight: 600;
-    color: #444;
-}
-
-/* 入力系（共通） */
-.form-control {
-    border-radius: 8px;
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    transition: 0.2s ease;
-}
-
-.form-control:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
-}
-
-/* チェックボックス */
-.form-check-input {
-    transform: scale(1.2);
-    margin-right: 4px;
-}
-
-.form-check-label {
-    margin-left: 2px;
+.breadcrumb {
+    margin-bottom: 20px;
     font-size: 14px;
 }
 
-/* 季節チェックボックスの全体 */
-.d-flex.flex-wrap .form-check {
-    margin-bottom: 8px;
+.breadcrumb .link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+/* 左側：画像 */
+.left-box {
+    width: 45%;
+}
+
+.product-image {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.file-wrapper {
+    margin-top: 12px;
+}
+
+.file-label {
+    display: inline-block;
+    background: #E6E6E6;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-name {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #555;
+}
+
+/* 右側：フォーム入力 */
+.right-box {
+    width: 50%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.input-text {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* 季節ラジオ */
+.season-options {
+    display: flex;
+    gap: 20px;
+}
+
+.season-label {
+    font-size: 14px;
+}
+
+/* 説明 */
+.description-box {
+    margin-top: 30px;
+}
+
+.textarea {
+    width: 100%;
+    height: 160px;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
 }
 
 /* エラー表示 */
-.invalid-feedback {
-    font-size: 13px;
+.error {
+    color: red;
+    font-size: 12px;
     margin-top: 4px;
 }
 
-/* 現在の画像プレビュー */
-.img-thumbnail {
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    max-height: 170px;
+/* ボタン群 */
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 14px;
 }
 
-/* ボタン周り */
-.btn {
-    border-radius: 10px;
-    font-weight: 600;
-    padding: 10px 20px;
+.btn-back {
+    padding: 10px 40px;
+    background: #D9D9D9;
+    border-radius: 6px;
+    color: black;
+    text-decoration: none;
 }
 
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+.btn-save {
+    padding: 10px 40px;
+    background: #F2C400;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-.btn-primary:hover {
-    background-color: #0069d9;
+.btn-delete {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    color: #f34f49;
 }
 
-.btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
+.btn-back:hover,
+.btn-save:hover,
+.btn-delete:hover {
+    opacity: 0.8;
 }
 
-.btn-secondary:hover {
-    background-color: #5a6268;
+/* 削除フォームを横並びにする */
+.delete-form {
+    margin: 0;
 }
 
-/* gap が効かない古いブラウザ対応（念のため） */
-.d-flex.gap-3 > * {
-    margin-right: 12px;
+/* --- 編集画面の下に「ボタン行」を作る --- */
+.buttons, .delete-area {
+    /* inline-block にして横に並べる */
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.d-flex.gap-3 > *:last-child {
-    margin-right: 0;
+/* ボタン行の外側（detail-container の最後部分）に揃える */
+.detail-container > .buttons,
+.detail-container > .delete-area {
+    width: auto;
+}
+
+/* ボタン全体を並べる専用レイアウト（detail-container の最終段） */
+.detail-container {
+    position: relative;
+}
+
+/* 中央の2つのボタン（戻る／保存） */
+.buttons {
+    text-align: center;
+    width: 100%;
+}
+
+/* 右端の削除ボタン */
+.delete-area {
+    position: absolute;
+    right: 0;
+    bottom: 0; /* ボタンと同じ高さに揃える */
 }

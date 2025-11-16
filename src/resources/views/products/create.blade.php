@@ -4,6 +4,7 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/products/create.css') }}">
 @endsection
+
 @section('content')
 <div class="register-container">
 
@@ -14,54 +15,46 @@
 
         {{-- 商品名 --}}
         <div class="form-group">
-            <label>商品名</label>
-            <input type="text" name="name" value="{{ old('name') }}">
-            @error('name')
-                <p class="error">{{ $message }}</p>
-            @enderror
+            <label class="form-label">商品名 <span class="required">必須</span></label>
+            <input type="text" name="name" value="{{ old('name') }}" class="input-text">
+            @error('name') <p class="error">{{ $message }}</p> @enderror
         </div>
 
         {{-- 値段 --}}
         <div class="form-group">
-            <label>値段（0〜10000 円）</label>
-            <input type="number" name="price" value="{{ old('price') }}">
-            @error('price')
-                <p class="error">{{ $message }}</p>
-            @enderror
+            <label class="form-label">値段 <span class="required">必須</span></label>
+            <input type="number" name="price" value="{{ old('price') }}" class="input-text">
+            @error('price') <p class="error">{{ $message }}</p> @enderror
         </div>
 
-        {{-- 季節（複数選択） --}}
+        {{-- 商品画像 --}}
         <div class="form-group">
-            <label>季節（複数選択可）</label>
-            <select name="seasons[]" multiple>
+            <label class="form-label">商品画像 <span class="required">必須</span></label>
+            <input type="file" name="image" class="input-file">
+            @error('image') <p class="error">{{ $message }}</p> @enderror
+        </div>
+
+        {{-- 季節 --}}
+        <div class="form-group">
+            <label class="form-label">季節 <span class="required">複数選択可</span></label>
+            <div class="season-options">
                 @foreach ($seasons as $season)
-                    <option value="{{ $season->id }}"
-                        {{ collect(old('seasons'))->contains($season->id) ? 'selected' : '' }}>
-                        {{ $season->name }}
-                    </option>
+                <label class="season-label">
+                    <input type="checkbox" name="seasons[]"
+                        value="{{ $season->id }}"
+                        {{ collect(old('seasons'))->contains($season->id) ? 'checked' : '' }}>
+                    {{ $season->name }}
+                </label>
                 @endforeach
-            </select>
-            @error('seasons')
-                <p class="error">{{ $message }}</p>
-            @enderror
+            </div>
+            @error('seasons') <p class="error">{{ $message }}</p> @enderror
         </div>
 
-        {{-- 画像 --}}
+        {{-- 商品説明 --}}
         <div class="form-group">
-            <label>商品画像（png/jpeg）</label>
-            <input type="file" name="image">
-            @error('image')
-                <p class="error">{{ $message }}</p>
-            @enderror
-        </div>
-
-        {{-- 説明 --}}
-        <div class="form-group">
-            <label>商品説明（120文字以内）</label>
-            <textarea name="description" rows="4">{{ old('description') }}</textarea>
-            @error('description')
-                <p class="error">{{ $message }}</p>
-            @enderror
+            <label class="form-label">商品説明 <span class="required">必須</span></label>
+            <textarea name="description" rows="4" class="textarea">{{ old('description') }}</textarea>
+            @error('description') <p class="error">{{ $message }}</p> @enderror
         </div>
 
         {{-- ボタン --}}
@@ -71,6 +64,5 @@
         </div>
 
     </form>
-
 </div>
 @endsection

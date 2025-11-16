@@ -14,10 +14,27 @@ class ProductController extends Controller
     /**
      * 商品一覧
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('seasons')->orderBy('id', 'desc')->paginate(10);
-        return view('products.index', compact('products'));
+    $query = Product::with('seasons');
+
+    // 🔍 キーワード検索
+    if ($request->filled('keyword')) {
+        $query->where('name', 'like', '%' . $request->keyword . '%');
+    }
+
+    // 💰 価格ソート
+    if ($request->filled('sort')) {
+        $query->orderBy('price', $request->sort);
+    } else {
+        // sort が指定されていないときのデフォルト
+        $query->orderBy('id', 'desc');
+    }
+
+    // 📄 ページネーション（検索条件維持）
+    $products = $query->paginate(6)->withQueryString();
+
+    return view('products.index', compact('products'));
     }
 
     /**
@@ -30,11 +47,11 @@ class ProductController extends Controller
     }
 
     /**
-     * 商品登録処理（画像アップロード・季節紐付け含む）
+     * 商品登録処理
      */
     public function store(ProductStoreRequest $request)
     {
-        // 画像アップロード（storage/app/public/images）
+        // 画像アップロード
         $imagePath = $request->file('image')->store('images', 'public');
 
         // 商品登録
@@ -42,10 +59,10 @@ class ProductController extends Controller
             'name'        => $request->name,
             'price'       => $request->price,
             'description' => $request->description,
-            'image_path'  => $imagePath,
+            'image'       => $imagePath,   // ← image に保存
         ]);
 
-        // 季節の紐付け（多対多）
+        // 中間テーブル（季節）
         if ($request->season_ids) {
             $product->seasons()->attach($request->season_ids);
         }
@@ -54,16 +71,7 @@ class ProductController extends Controller
     }
 
     /**
-     * 商品詳細（PG02）
-     */
-    public function show($productId)
-    {
-        $product = Product::with('seasons')->findOrFail($productId);
-        return view('products.show', compact('product'));
-    }
-
-    /**
-     * 商品編集画面
+     * 統合した商品詳細 + 編集画面
      */
     public function edit($productId)
     {
@@ -78,18 +86,18 @@ class ProductController extends Controller
      */
     public function update(ProductUpdateRequest $request, $productId)
     {
-        $product = Product::findOrFail($productId);
+        $product = Product::with('seasons')->findOrFail($productId);
 
-        // 画像が再アップロードされた場合
+        // 画像変更がある場合
         if ($request->hasFile('image')) {
 
             // 古い画像を削除
-            if ($product->image_path && Storage::disk('public')->exists($product->image_path)) {
-                Storage::disk('public')->delete($product->image_path);
+            if ($product->image && Storage::disk('public')->exists($product->image)) {
+                Storage::disk('public')->delete($product->image);
             }
 
-            $imagePath = $request->file('image')->store('images', 'public');
-            $product->image_path = $imagePath;
+            // 新しい画像の保存
+            $product->image = $request->file('image')->store('images', 'public');
         }
 
         // 商品情報更新
@@ -97,27 +105,30 @@ class ProductController extends Controller
             'name'        => $request->name,
             'price'       => $request->price,
             'description' => $request->description,
+            'image'       => $product->image,   // ← image_path → image
         ]);
 
-        // 季節の更新（中間テーブル）
-        $product->seasons()->sync($request->season_ids);
+        // 季節（checkbox）
+        $seasonIds = $request->input('season_ids', []);
+        $product->seasons()->sync($seasonIds);
 
-        return redirect()->route('products.index')->with('success', '商品情報を更新しました');
+        return redirect()->route('products.edit', $productId)
+            ->with('success', '商品情報を更新しました');
     }
 
     /**
-     * 商品削除
+     * 商品削除処理
      */
     public function destroy($productId)
     {
         $product = Product::findOrFail($productId);
 
         // 画像削除
-        if ($product->image_path && Storage::disk('public')->exists($product->image_path)) {
-            Storage::disk('public')->delete($product->image_path);
+        if ($product->image && Storage::disk('public')->exists($product->image)) {
+            Storage::disk('public')->delete($product->image);
         }
 
-        // 関連季節も削除
+        // 中間テーブル
         $product->seasons()->detach();
 
         $product->delete();

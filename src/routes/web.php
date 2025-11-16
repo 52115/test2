@@ -6,26 +6,26 @@ use App\Http\Controllers\ProductController;
 // -------------------------------
 // 商品一覧（PG01）
 // -------------------------------
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products', [ProductController::class, 'index'])
+    ->name('products.index');
 
 // -------------------------------
 // 商品登録（PG04）
 // -------------------------------
-Route::get('/products/register', [ProductController::class, 'create'])->name('products.create');
-Route::post('/products/register', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products/register', [ProductController::class, 'create'])
+    ->name('products.create');
+Route::post('/products/register', [ProductController::class, 'store'])
+    ->name('products.store');
 
 // -------------------------------
-// 商品詳細（PG02）
+// 商品詳細 + 商品編集（PG02 + PG03 統合）
+//   ※ show() 削除 → edit() に統合
 // -------------------------------
-Route::get('/products/detail/{productId}', [ProductController::class, 'show'])
-    ->name('products.show');
-
-// -------------------------------
-// 商品更新（PG03）
-// -------------------------------
-Route::get('/products/{productId}/update', [ProductController::class, 'edit'])
+Route::get('/products/{productId}', [ProductController::class, 'edit'])
     ->name('products.edit');
-Route::post('/products/{productId}/update', [ProductController::class, 'update'])
+
+// 更新処理（POST のまま使用）
+Route::post('/products/{productId}', [ProductController::class, 'update'])
     ->name('products.update');
 
 // -------------------------------
