@@ -14,7 +14,7 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'        => ['required', 'string', 'max:255'],
+            'name'        => ['required', 'string'],
             'price'       => ['required', 'numeric', 'min:0', 'max:10000'],
             'image'       => ['required', 'image', 'mimes:png,jpeg'],
             'season_ids'  => ['required', 'array', 'min:1'],

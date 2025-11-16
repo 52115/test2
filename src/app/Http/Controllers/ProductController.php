@@ -112,7 +112,7 @@ class ProductController extends Controller
         $seasonIds = $request->input('season_ids', []);
         $product->seasons()->sync($seasonIds);
 
-        return redirect()->route('products.edit', $productId)
+        return redirect()->route('products.index')
             ->with('success', '商品情報を更新しました');
     }
 

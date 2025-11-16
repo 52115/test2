@@ -28,7 +28,15 @@
             </div>
 
             @if(request('keyword') || request('sort'))
-                <a href="{{ route('products.index') }}" class="reset-btn">× リセット</a>
+                <a href="{{ route('products.index') }}" class="reset-btn">
+                    @if(request('sort') == 'asc')
+                    価格が安い順
+                    @elseif(request('sort') == 'desc')
+                    価格が高い順
+                    @else
+                    リセット
+                    @endif
+                     ×</a>
             @endif
         </form>
     </div>

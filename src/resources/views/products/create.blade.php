@@ -16,14 +16,14 @@
         {{-- 商品名 --}}
         <div class="form-group">
             <label class="form-label">商品名 <span class="required">必須</span></label>
-            <input type="text" name="name" value="{{ old('name') }}" class="input-text">
+            <input type="text" name="name" value="{{ old('name') }}" class="input-text" placeholder="商品名を入力">
             @error('name') <p class="error">{{ $message }}</p> @enderror
         </div>
 
         {{-- 値段 --}}
         <div class="form-group">
             <label class="form-label">値段 <span class="required">必須</span></label>
-            <input type="number" name="price" value="{{ old('price') }}" class="input-text">
+            <input type="number" name="price" value="{{ old('price') }}" class="input-text" placeholder="値段を入力">
             @error('price') <p class="error">{{ $message }}</p> @enderror
         </div>
 
@@ -53,7 +53,7 @@
         {{-- 商品説明 --}}
         <div class="form-group">
             <label class="form-label">商品説明 <span class="required">必須</span></label>
-            <textarea name="description" rows="4" class="textarea">{{ old('description') }}</textarea>
+            <textarea name="description" rows="4" class="textarea" placeholder="商品の説明を入力">{{ old('description') }}</textarea>
             @error('description') <p class="error">{{ $message }}</p> @enderror
         </div>
 
