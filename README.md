@@ -18,14 +18,11 @@ no matching manifest for linux/arm64/v8 in the manifest list entries
 ~~~
 
 例：
-
-~~~yaml
 mysql:
   platform: linux/x86_64  # この行を追加
   image: mysql:8.0.26
   environment:
     ...
-~~~
 
 ---
 
@@ -84,7 +81,7 @@ php artisan db:seed
 
 ## ER図
 
-![ER 図](./er.png)
+![ER 図](./er/test2.er.png)
 
 ---
 
