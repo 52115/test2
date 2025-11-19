@@ -13,16 +13,19 @@ docker-compose up -d --build
 **補足 — M1 / M2 Mac で発生する可能性のあるエラー**
 
 以下のエラーが出てビルドできない場合は、`docker-compose.yml` の `mysql` に `platform` を追記してください。
-~~~
+
 no matching manifest for linux/arm64/v8 in the manifest list entries
-~~~
+
 
 例：
+
+~~~yaml
 mysql:
   platform: linux/x86_64  # この行を追加
   image: mysql:8.0.26
   environment:
     ...
+~~~
 
 ---
 
