@@ -40,9 +40,9 @@
             <div class="season-options">
                 @foreach ($seasons as $season)
                 <label class="season-label">
-                    <input type="checkbox" name="seasons[]"
+                    <input type="checkbox" name="seasons_id[]"
                         value="{{ $season->id }}"
-                        {{ collect(old('seasons'))->contains($season->id) ? 'checked' : '' }}>
+                        {{ collect(old('seasons_id'))->contains($season->id) ? 'checked' : '' }}>
                     {{ $season->name }}
                 </label>
                 @endforeach
